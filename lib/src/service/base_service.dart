@@ -13,16 +13,23 @@ import 'package:http/http.dart';
 import '../client/client_context.dart';
 import '../client/stream_request.dart';
 import '../client/user_context.dart';
-import '../util/json_util.dart';
-import '../util/param_util.dart';
+import '../util/json_utils.dart';
+import 'serializable.dart';
 
 abstract class Service {
-  Future<http.Response> get(UserContext userContext, String unencodedPath);
+  Future<http.Response> get(
+    UserContext userContext,
+    String unencodedPath, {
+    Response Function(Response response)? validate,
+  });
 
   Future<Stream<Map<String, dynamic>>> getStream(
     final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> Function(
+            StreamedResponse streamedResponse, String event)?
+        validate,
   });
 
   Future<http.Response> post(
@@ -30,17 +37,20 @@ abstract class Service {
     String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
     Map<String, String> body = const {},
+    Response Function(Response response)? validate,
   });
 
   Future<http.Response> delete(
     UserContext userContext,
-    String unencodedPath,
-  );
+    String unencodedPath, {
+    Response Function(Response response)? validate,
+  });
 
   Future<http.Response> put(
     UserContext userContext,
     String unencodedPath, {
     Map<String, String> body = const {},
+    Response Function(Response response)? validate,
   });
 }
 
@@ -70,7 +80,7 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        convertQueryParameters(queryParameters),
+        _convertQueryParameters(queryParameters),
       ),
     );
 
@@ -92,7 +102,7 @@ abstract class BaseService implements Service {
         Uri.https(
           _authority,
           unencodedPath,
-          convertQueryParameters(queryParameters),
+          _convertQueryParameters(queryParameters),
         ),
       ),
     );
@@ -116,10 +126,10 @@ abstract class BaseService implements Service {
       Uri.https(
         _authority,
         unencodedPath,
-        convertQueryParameters(queryParameters),
+        _convertQueryParameters(queryParameters),
       ),
       headers: {'Content-type': 'application/json'},
-      body: converter.jsonEncode(removeNullValues(body)),
+      body: converter.jsonEncode(_removeNullValues(body)),
     );
 
     return validate != null ? validate(response) : response;
@@ -150,9 +160,63 @@ abstract class BaseService implements Service {
       userContext,
       Uri.https(_authority, unencodedPath),
       headers: {'Content-type': 'application/json'},
-      body: converter.jsonEncode(removeNullValues(body)),
+      body: converter.jsonEncode(_removeNullValues(body)),
     );
 
     return validate != null ? validate(response) : response;
+  }
+
+  dynamic _removeNullValues(final dynamic object) {
+    if (object is! Map) {
+      return object;
+    }
+
+    final parameters = <String, dynamic>{};
+    object.forEach((key, value) {
+      final newObject = _removeNullValues(value);
+      if (newObject != null) {
+        parameters[key] = newObject;
+      }
+    });
+
+    return parameters.isNotEmpty ? parameters : null;
+  }
+
+  Map<String, String> _convertQueryParameters(
+    final Map<String, dynamic> queryParameters,
+  ) {
+    final serializedParameters = queryParameters.map((key, value) {
+      if (value is List<Serializable>?) {
+        return MapEntry(
+          key,
+          value?.toSet().map((e) => e.value).toList().join(','),
+        );
+      } else if (value is List<Enum>?) {
+        return MapEntry(
+          key,
+          value?.toSet().map((e) => e.name).join(','),
+        );
+      } else if (value is List?) {
+        return MapEntry(
+          key,
+          value?.toSet().join(','),
+        );
+      }
+
+      return MapEntry(key, value);
+    });
+
+    return Map.from(_removeNullValues(serializedParameters) ?? {}).map(
+      //! Uri.https(...) needs iterable in the value for query params by
+      //! which it means a String in the value of the Map too. So you need
+      //! to convert it from Map<String, dynamic> to Map<String, String>
+      (key, value) {
+        if (value is DateTime) {
+          return MapEntry(key, value.toUtc().toIso8601String());
+        }
+
+        return MapEntry(key, value.toString());
+      },
+    );
   }
 }

@@ -11,5 +11,5 @@ export 'package:twitter_api_core/src/exception/twitter_exception.dart';
 export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
 export 'package:twitter_api_core/src/service/base_service.dart';
 export 'package:twitter_api_core/src/service/serializable.dart';
-export 'package:twitter_api_core/src/util/json_util.dart';
-export 'package:twitter_api_core/src/util/param_util.dart';
+export 'package:twitter_api_core/src/util/json_utils.dart';
+export 'package:twitter_api_core/src/util/oauth_utils.dart';

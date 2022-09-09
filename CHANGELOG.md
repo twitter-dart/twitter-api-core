@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.0.5
+
+- Refactored structures.
+
 ## v0.0.4
 
 - Fixed `RetryConfig`.

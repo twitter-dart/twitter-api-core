@@ -2,10 +2,13 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
 import '../exception/twitter_exception.dart';
 
 dynamic tryJsonDecode(
