@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.0.4
+
+- Fixed `RetryConfig`.
+
 ## v0.0.3
 
 - Exposed `ClientContext`.

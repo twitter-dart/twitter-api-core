@@ -13,7 +13,7 @@ import '../client/retry_strategy.dart';
 /// The simplest way to specify automatic retries is to specify a fixed number
 /// of times at fixed intervals. For example, to automatically retry up to
 /// 5 times at 3 seconds intervals when a timeout occurs in the communication
-/// process with the API, use [RetryConfig.regularIntervals] like following.
+/// process with the API, use [RetryConfig.ofRegularIntervals] like following.
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -21,7 +21,7 @@ import '../client/retry_strategy.dart';
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.regularIntervals(
+///     retryConfig: v2.RetryConfig.ofRegularIntervals(
 ///       maxAttempts: 5,
 ///       intervalInSeconds: 3,
 ///     ),
@@ -41,7 +41,7 @@ import '../client/retry_strategy.dart';
 /// To solve this problem somewhat, the library supports automatic retries with
 /// the **Exponential BackOff algorithm**. This is an algorithm that
 /// exponentially increases the retry interval based on the number of retries
-/// performed. It can be enabled with the [RetryConfig.exponentialBackOff]
+/// performed. It can be enabled with the [RetryConfig.ofExponentialBackOff]
 /// constructor as follows.
 ///
 /// ```dart
@@ -50,7 +50,7 @@ import '../client/retry_strategy.dart';
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.exponentialBackOff(
+///     retryConfig: v2.RetryConfig.ofExponentialBackOff(
 ///       maxAttempts: 5,
 ///     ),
 ///     timeout: Duration(seconds: 20),
@@ -59,7 +59,7 @@ import '../client/retry_strategy.dart';
 /// ```
 ///
 /// The **Exponential BackOff Algorithm** can be enabled by using the
-/// [RetryConfig.exponentialBackOff] constructor, as in the example above.
+/// [RetryConfig.ofExponentialBackOff] constructor, as in the example above.
 /// And the interval, which increases with the number of retries, is then
 /// calculated as follows.
 ///
@@ -73,9 +73,9 @@ import '../client/retry_strategy.dart';
 /// effective. This method allows for even greater flexibility in distributing
 /// the timing of retries.
 ///
-/// [RetryConfig.exponentialBackOff] constructor, as in the example above.
+/// [RetryConfig.ofExponentialBackOff] constructor, as in the example above.
 /// As always, you can use this algorithm by using
-/// [RetryConfig.exponentialBackOffAndJitter] constructor as follows.
+/// [RetryConfig.ofExponentialBackOffAndJitter] constructor as follows.
 ///
 /// ```dart
 /// import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
@@ -83,7 +83,7 @@ import '../client/retry_strategy.dart';
 /// void main() async {
 ///   final twitter = v2.TwitterApi(
 ///     bearerToken: 'YOUR_TOKEN_HERE',
-///     retryConfig: v2.RetryConfig.exponentialBackOffAndJitter(
+///     retryConfig: v2.RetryConfig.ofExponentialBackOffAndJitter(
 ///       maxAttempts: 5,
 ///     ),
 ///     timeout: Duration(seconds: 20),
@@ -92,7 +92,7 @@ import '../client/retry_strategy.dart';
 /// ```
 ///
 /// The **Exponential BackOff and Jitter Algorithm** can be enabled by using the
-/// [RetryConfig.exponentialBackOffAndJitter] constructor, as in the example
+/// [RetryConfig.ofExponentialBackOffAndJitter] constructor, as in the example
 /// above. And the interval, which increases with the number of retries, is then
 /// calculated as follows.
 ///
@@ -104,6 +104,7 @@ import '../client/retry_strategy.dart';
 /// is passed to the [maxAttempts] field of [RetryConfig].
 class RetryConfig {
   /// Returns the new instance of [RetryConfig] of regular intervals.
+  @Deprecated('Use .OfRegularIntervals instead.')
   factory RetryConfig.regularIntervals({
     required int maxAttempts,
     int intervalInSeconds = 2,
@@ -117,6 +118,7 @@ class RetryConfig {
       );
 
   /// Returns the new instance of [RetryConfig] of Exponential Back Off.
+  @Deprecated('Use .OfExponentialBackOff instead.')
   factory RetryConfig.exponentialBackOff({
     required int maxAttempts,
     Function(RetryEvent event)? onExecute,
@@ -130,7 +132,46 @@ class RetryConfig {
 
   /// Returns the new instance of [RetryConfig] of Exponential Back Off
   /// and Jitter.
+  @Deprecated('Use .OfExponentialBackOffAndJitter instead.')
   factory RetryConfig.exponentialBackOffAndJitter({
+    required int maxAttempts,
+    Function(RetryEvent event)? onExecute,
+  }) =>
+      RetryConfig._(
+        strategy: RetryStrategy.exponentialBackOffAndJitter,
+        maxAttempts: maxAttempts,
+        intervalInSeconds: 0,
+        onExecute: onExecute,
+      );
+
+  /// Returns the new instance of [RetryConfig] of regular intervals.
+  factory RetryConfig.ofRegularIntervals({
+    required int maxAttempts,
+    int intervalInSeconds = 2,
+    Function(RetryEvent event)? onExecute,
+  }) =>
+      RetryConfig._(
+        strategy: RetryStrategy.regularIntervals,
+        maxAttempts: maxAttempts,
+        intervalInSeconds: intervalInSeconds,
+        onExecute: onExecute,
+      );
+
+  /// Returns the new instance of [RetryConfig] of Exponential Back Off.
+  factory RetryConfig.ofExponentialBackOff({
+    required int maxAttempts,
+    Function(RetryEvent event)? onExecute,
+  }) =>
+      RetryConfig._(
+        strategy: RetryStrategy.exponentialBackOff,
+        maxAttempts: maxAttempts,
+        intervalInSeconds: 0,
+        onExecute: onExecute,
+      );
+
+  /// Returns the new instance of [RetryConfig] of Exponential Back Off
+  /// and Jitter.
+  factory RetryConfig.ofExponentialBackOffAndJitter({
     required int maxAttempts,
     Function(RetryEvent event)? onExecute,
   }) =>
