@@ -2,7 +2,7 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
-import 'package:twitter_api_core/src/service/serializable.dart';
+import '../service/serializable.dart';
 
 dynamic removeNullValues(final dynamic object) {
   if (object is! Map) {
