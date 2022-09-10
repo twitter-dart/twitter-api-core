@@ -16,17 +16,7 @@ import '../client/user_context.dart';
 import '../util/json_utils.dart';
 import 'serializable.dart';
 
-abstract class ServiceHelper {
-  /// Returns the new instance of [ServiceHelper].
-  factory ServiceHelper(
-    final String authority,
-    final ClientContext context,
-  ) =>
-      _ServiceHelper(
-        authority: authority,
-        context: context,
-      );
-
+abstract class Service {
   Future<http.Response> get(
     UserContext userContext,
     String unencodedPath, {
@@ -64,9 +54,9 @@ abstract class ServiceHelper {
   });
 }
 
-class _ServiceHelper implements ServiceHelper {
+abstract class ServiceHelper implements Service {
   /// Returns the new instance of [ServiceHelper].
-  const _ServiceHelper({
+  const ServiceHelper({
     required String authority,
     required ClientContext context,
   })  : _authority = authority,
