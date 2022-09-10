@@ -13,7 +13,7 @@ import 'package:oauth1/oauth1.dart' as oauth1;
 import 'client.dart';
 
 class OAuth1Client extends Client {
-  OAuth1Client({
+  const OAuth1Client({
     required String consumerKey,
     required String consumerSecret,
     required String accessToken,

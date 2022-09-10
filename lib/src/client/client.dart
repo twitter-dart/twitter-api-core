@@ -9,6 +9,9 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 abstract class Client {
+  /// Returns the new instance of [Client].
+  const Client();
+
   Future<http.Response> get(
     Uri uri, {
     required Duration timeout,

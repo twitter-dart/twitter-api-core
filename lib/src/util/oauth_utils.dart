@@ -13,6 +13,8 @@ import '../exception/twitter_exception.dart';
 
 /// Provides the convenience utils for OAuth.
 class OAuthUtils {
+  OAuthUtils._();
+
   /// Returns the App-Only bearer token associated with
   /// [consumerKey] and [consumerSecret].
   static Future<String> generateAppOnlyBearerToken({

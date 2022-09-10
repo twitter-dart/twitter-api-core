@@ -11,7 +11,7 @@
 /// You can see more information about rate limits [here](https://developer.twitter.com/en/docs/twitter-api/rate-limits).
 class RateLimitExceededException implements Exception {
   /// Returns the new instance of [RateLimitExceededException].
-  RateLimitExceededException(this.message);
+  const RateLimitExceededException(this.message);
 
   /// The error message
   final String message;

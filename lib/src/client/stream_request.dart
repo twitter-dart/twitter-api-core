@@ -4,7 +4,7 @@
 
 class StreamRequest {
   /// Returns the new instance of [StreamRequest].
-  StreamRequest(this.uri);
+  const StreamRequest(this.uri);
 
   /// The communication method.
   final String method = 'GET';

@@ -6,7 +6,7 @@
 /// authorized by the server as a result of its use in the request.
 class UnauthorizedException implements Exception {
   /// Returns the new instance of [UnauthorizedException].
-  UnauthorizedException(this.message);
+  const UnauthorizedException(this.message);
 
   /// The error message
   final String message;

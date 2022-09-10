@@ -25,7 +25,7 @@ abstract class ClientResolver {
 
 class _ClientResolver implements ClientResolver {
   /// Returns the new instance of [_ClientResolver].
-  _ClientResolver(this.oauth1Client, this.oauth2Client);
+  const _ClientResolver(this.oauth1Client, this.oauth2Client);
 
   /// The OAuth 1.0a client
   final OAuth1Client? oauth1Client;

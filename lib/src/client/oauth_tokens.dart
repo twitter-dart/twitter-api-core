@@ -5,7 +5,7 @@
 /// This class represents an access token used for OAuth 1.0a authentication.
 class OAuthTokens {
   /// Returns the new instance of [OAuthTokens].
-  OAuthTokens({
+  const OAuthTokens({
     required this.consumerKey,
     required this.consumerSecret,
     required this.accessToken,

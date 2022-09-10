@@ -56,7 +56,7 @@ abstract class Service {
 
 class ServiceHelper implements Service {
   /// Returns the new instance of [ServiceHelper].
-  ServiceHelper({
+  const ServiceHelper({
     required String authority,
     required ClientContext context,
   })  : _authority = authority,

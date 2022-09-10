@@ -13,7 +13,8 @@ import 'client.dart';
 
 class OAuth2Client extends Client {
   /// Returns the new instance of [OAuth2Client].
-  OAuth2Client({required String bearerToken}) : _bearerToken = bearerToken;
+  const OAuth2Client({required String bearerToken})
+      : _bearerToken = bearerToken;
 
   /// The token to authenticate OAuth 2.0
   final String _bearerToken;

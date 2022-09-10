@@ -25,7 +25,7 @@ abstract class RetryPolicy {
 
 class _RetryPolicy implements RetryPolicy {
   /// Returns the new instance of [_RetryPolicy].
-  _RetryPolicy(RetryConfig? retryConfig) : _retryConfig = retryConfig;
+  const _RetryPolicy(RetryConfig? retryConfig) : _retryConfig = retryConfig;
 
   /// The random generator.
   static final _random = math.Random();

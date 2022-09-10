@@ -5,7 +5,7 @@
 /// This class represents the event during the retry process.
 class RetryEvent {
   /// Returns the new instance of [RetryEvent].
-  RetryEvent({
+  const RetryEvent({
     required this.retryCount,
     required this.intervalInSeconds,
   });
