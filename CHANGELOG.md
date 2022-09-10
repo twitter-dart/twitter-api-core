@@ -1,5 +1,9 @@
 # Release Note
 
+## v0.0.9
+
+- Fixed structure.
+
 ## v0.0.8
 
 - Fixed structure.
