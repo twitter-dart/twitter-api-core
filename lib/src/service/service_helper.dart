@@ -54,7 +54,7 @@ abstract class Service {
   });
 }
 
-abstract class ServiceHelper implements Service {
+class ServiceHelper implements Service {
   /// Returns the new instance of [ServiceHelper].
   const ServiceHelper({
     required String authority,
