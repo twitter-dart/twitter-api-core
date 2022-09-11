@@ -88,6 +88,25 @@ class OAuth1Client extends Client {
           .timeout(timeout);
 
   @override
+  Future<http.Response> postMultipart(
+    http.MultipartRequest request, {
+    List<http.MultipartFile> files = const [],
+    required Duration timeout,
+  }) async {
+    request.files.addAll(files);
+
+    return http.Response.fromStream(await oauthClient.send(request))
+        .timeout(timeout)
+        .then((response) {
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response;
+      } else {
+        return Future.error(response);
+      }
+    });
+  }
+
+  @override
   Future<http.Response> delete(
     Uri uri, {
     Map<String, String> headers = const {},

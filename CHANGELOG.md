@@ -1,5 +1,10 @@
 # Release Note
 
+## v1.0.0
+
+- Upgrade as stable version.
+- Supported multi-part communication method.
+
 ## v0.0.10
 
 - Fixed structure.

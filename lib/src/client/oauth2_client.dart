@@ -59,6 +59,26 @@ class OAuth2Client extends Client {
           .timeout(timeout);
 
   @override
+  Future<http.Response> postMultipart(
+    http.MultipartRequest request, {
+    List<http.MultipartFile> files = const [],
+    required Duration timeout,
+  }) async {
+    request.files.addAll(files);
+    request.headers.addAll({'Authorization': 'Bearer $_bearerToken'});
+
+    return http.Response.fromStream(await request.send())
+        .timeout(timeout)
+        .then((response) {
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return response;
+      } else {
+        return Future.error(response);
+      }
+    });
+  }
+
+  @override
   Future<http.Response> delete(
     Uri uri, {
     Map<String, String> headers = const {},

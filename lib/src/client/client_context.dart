@@ -43,6 +43,12 @@ abstract class ClientContext {
     dynamic body,
   });
 
+  Future<http.Response> postMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+  });
+
   Future<http.Response> delete(
     UserContext userContext,
     Uri uri,
@@ -130,6 +136,21 @@ class _ClientContext implements ClientContext {
           uri,
           headers: headers,
           body: body,
+          timeout: timeout,
+        ),
+      );
+
+  @override
+  Future<http.Response> postMultipart(
+    UserContext userContext,
+    Uri uri, {
+    List<http.MultipartFile> files = const [],
+  }) async =>
+      await _challengeWithRetryIfNecessary(
+        _clientResolver.execute(userContext),
+        (client) async => await client.postMultipart(
+          http.MultipartRequest('POST', uri),
+          files: files,
           timeout: timeout,
         ),
       );

@@ -30,6 +30,12 @@ abstract class Client {
     required Duration timeout,
   });
 
+  Future<http.Response> postMultipart(
+    http.MultipartRequest request, {
+    List<http.MultipartFile> files = const [],
+    required Duration timeout,
+  });
+
   Future<http.Response> delete(
     Uri uri, {
     Map<String, String> headers = const {},

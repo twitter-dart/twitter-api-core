@@ -40,6 +40,14 @@ abstract class Service {
     Response Function(Response response)? validate,
   });
 
+  Future<http.Response> postMultipart(
+    UserContext userContext,
+    String unencodedPath, {
+    List<http.MultipartFile> files = const [],
+    Map<String, dynamic> queryParameters = const {},
+    Response Function(Response response)? validate,
+  });
+
   Future<http.Response> delete(
     UserContext userContext,
     String unencodedPath, {
@@ -130,6 +138,27 @@ class ServiceHelper implements Service {
       ),
       headers: {'Content-type': 'application/json'},
       body: converter.jsonEncode(_removeNullValues(body)),
+    );
+
+    return validate != null ? validate(response) : response;
+  }
+
+  @override
+  Future<http.Response> postMultipart(
+    final UserContext userContext,
+    final String unencodedPath, {
+    List<http.MultipartFile> files = const [],
+    Map<String, dynamic> queryParameters = const {},
+    Response Function(Response response)? validate,
+  }) async {
+    final response = await _context.postMultipart(
+      userContext,
+      Uri.https(
+        _authority,
+        unencodedPath,
+        _convertQueryParameters(queryParameters),
+      ),
+      files: files,
     );
 
     return validate != null ? validate(response) : response;
