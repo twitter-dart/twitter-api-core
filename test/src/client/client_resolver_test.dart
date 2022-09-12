@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 import 'package:twitter_api_core/src/client/client_resolver.dart';
 import 'package:twitter_api_core/src/client/oauth1_client.dart';
 import 'package:twitter_api_core/src/client/oauth2_client.dart';
-import 'package:twitter_api_core/src/client/user_context.dart';
+import 'package:twitter_api_core/twitter_api_core.dart';
 
 void main() {
   group('.execute', () {
@@ -71,6 +71,18 @@ void main() {
       final client = resolver.execute(UserContext.oauth1Only);
 
       expect(client, isA<OAuth1Client>());
+    });
+
+    test('when user context is oauth1Only and OAuthTokens is not passed', () {
+      final resolver = ClientResolver(
+        null,
+        OAuth2Client(bearerToken: ''),
+      );
+
+      expect(
+        () => resolver.execute(UserContext.oauth1Only),
+        throwsA(isA<UnauthorizedException>()),
+      );
     });
   });
 }

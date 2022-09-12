@@ -3,10 +3,10 @@
 // modification, are permitted provided the conditions.
 
 // Project imports:
+import '../../twitter_api_core.dart';
 import 'client.dart';
 import 'oauth1_client.dart';
 import 'oauth2_client.dart';
-import 'user_context.dart';
 
 abstract class ClientResolver {
   /// Returns the new instance of [ClientResolver].
@@ -34,10 +34,21 @@ class _ClientResolver implements ClientResolver {
   final OAuth2Client oauth2Client;
 
   @override
-  Client execute(UserContext userContext) =>
-      //! If an authentication token is set, the OAuth 1.0a method is given
-      //! priority.
-      _shouldUseOauth1Client(userContext) ? oauth1Client! : oauth2Client;
+  Client execute(UserContext userContext) {
+    //! If an authentication token is set, the OAuth 1.0a method is given
+    //! priority.
+    if (_shouldUseOauth1Client(userContext)) {
+      if (oauth1Client == null) {
+        throw UnauthorizedException(
+            'Required tokens were not passed for an endpoint that '
+            'requires OAuth 1.0a.');
+      }
+
+      return oauth1Client!;
+    }
+
+    return oauth2Client;
+  }
 
   /// Returns true if this context should use OAuth 1.0a client, otherwise
   /// false.

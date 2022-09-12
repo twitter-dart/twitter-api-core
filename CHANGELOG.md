@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.1.1
+
+- Improved `ClientResolver`.
+
 ## v1.1.0
 
 - Added `UserContext.oauth1Only`.
