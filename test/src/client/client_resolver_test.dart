@@ -57,5 +57,20 @@ void main() {
 
       expect(client, isA<OAuth1Client>());
     });
+
+    test('when user context is oauth1Only', () {
+      final resolver = ClientResolver(
+        OAuth1Client(
+            consumerKey: '',
+            consumerSecret: '',
+            accessToken: '',
+            accessTokenSecret: ''),
+        OAuth2Client(bearerToken: ''),
+      );
+
+      final client = resolver.execute(UserContext.oauth1Only);
+
+      expect(client, isA<OAuth1Client>());
+    });
   });
 }

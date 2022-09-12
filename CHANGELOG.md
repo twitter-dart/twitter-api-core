@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.0.1
+
+- Added `UserContext.oauth1Only`.
+
 ## v1.0.0
 
 - Upgrade as stable version.

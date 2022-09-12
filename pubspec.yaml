@@ -1,6 +1,6 @@
 name: twitter_api_core
 description: This package provides core reusable and useful functionality for wrapping Twitter API with Dart.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/twitter-dart/twitter-api-core
 issue_tracker: https://github.com/twitter-dart/twitter-api-core/issues
 

@@ -41,6 +41,11 @@ class _ClientResolver implements ClientResolver {
 
   /// Returns true if this context should use OAuth 1.0a client, otherwise
   /// false.
-  bool _shouldUseOauth1Client(final UserContext userContext) =>
-      userContext == UserContext.oauth2OrOAuth1 && oauth1Client != null;
+  bool _shouldUseOauth1Client(final UserContext userContext) {
+    if (userContext == UserContext.oauth1Only) {
+      return true;
+    }
+
+    return userContext == UserContext.oauth2OrOAuth1 && oauth1Client != null;
+  }
 }
