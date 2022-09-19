@@ -12,6 +12,7 @@ import 'package:http/http.dart';
 // Project imports:
 import '../client/client_context.dart';
 import '../client/stream_request.dart';
+import '../client/stream_response.dart';
 import '../client/user_context.dart';
 import '../util/json_utils.dart';
 import 'serializable.dart';
@@ -23,7 +24,7 @@ abstract class Service {
     Response Function(Response response)? validate,
   });
 
-  Future<Stream<Map<String, dynamic>>> getStream(
+  Future<StreamResponse> getStream(
     final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -96,7 +97,7 @@ class ServiceHelper implements Service {
   }
 
   @override
-  Future<Stream<Map<String, dynamic>>> getStream(
+  Future<StreamResponse> getStream(
     final UserContext userContext,
     final String unencodedPath, {
     Map<String, dynamic> queryParameters = const {},
@@ -115,10 +116,14 @@ class ServiceHelper implements Service {
       ),
     );
 
-    return streamedResponse.stream.transform(converter.utf8.decoder).map(
-        (event) => validate != null
-            ? validate(streamedResponse, event)
-            : tryJsonDecode(streamedResponse, event));
+    return StreamResponse(
+      headers: streamedResponse.headers,
+      body: streamedResponse.stream.transform(converter.utf8.decoder).map(
+            (event) => validate != null
+                ? validate(streamedResponse, event)
+                : tryJsonDecode(streamedResponse, event),
+          ) as Future<Stream<Map<String, dynamic>>>,
+    );
   }
 
   @override

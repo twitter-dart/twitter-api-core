@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.2.0
+
+- Changed the response structure of stream and added `StreamResponse`. `StreamResponse` has headers and stream from response.
+
 ## v1.1.1
 
 - Improved `ClientResolver`.

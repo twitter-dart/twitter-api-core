@@ -4,6 +4,7 @@
 
 export 'package:twitter_api_core/src/client/client_context.dart';
 export 'package:twitter_api_core/src/client/oauth_tokens.dart';
+export 'package:twitter_api_core/src/client/stream_response.dart';
 export 'package:twitter_api_core/src/client/user_context.dart';
 export 'package:twitter_api_core/src/config/retry_config.dart';
 export 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dart';
