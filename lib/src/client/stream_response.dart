@@ -13,5 +13,5 @@ class StreamResponse {
   final Map<String, String> headers;
 
   /// The body
-  final Future<Stream<Map<String, dynamic>>> body;
+  final Stream<Map<String, dynamic>> body;
 }
