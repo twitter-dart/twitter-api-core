@@ -122,7 +122,7 @@ class ServiceHelper implements Service {
             (event) => validate != null
                 ? validate(streamedResponse, event)
                 : tryJsonDecode(streamedResponse, event),
-          ) as Stream<Map<String, dynamic>>,
+          ),
     );
   }
 

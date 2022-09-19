@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.2.2
+
+- Fixed the internal process.
+
 ## v1.2.1
 
 - Fixed the type of body in `StreamResponse` from `Future<Stream<Map<String, dynamic>>>` to `Stream<Map<String, dynamic>>`.
