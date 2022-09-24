@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.3.0
+
+- Added a dependency of `mime.dart` and exposed `lookupMimeType`.
+
 ## v1.2.2
 
 - Fixed the internal process.
