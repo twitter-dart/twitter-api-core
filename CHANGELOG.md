@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.3.1
+
+- Added a serialization pattern.
+
 ## v1.3.0
 
 - Added a dependency of `mime.dart` and exposed `lookupMimeType`.

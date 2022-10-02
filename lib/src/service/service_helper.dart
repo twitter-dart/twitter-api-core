@@ -235,6 +235,11 @@ class ServiceHelper implements Service {
           key,
           value?.toSet().join(','),
         );
+      } else if (value is Serializable) {
+        return MapEntry(
+          key,
+          value.value,
+        );
       }
 
       return MapEntry(key, value);
