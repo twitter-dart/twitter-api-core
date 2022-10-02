@@ -10,7 +10,7 @@ import 'package:http/http.dart';
 
 /// This class indicates that an exception occurred during a file upload to
 /// Twitter.
-class TwitterUploadException {
+class TwitterUploadException implements Exception {
   /// Returns the new instance of [TwitterUploadException].
   const TwitterUploadException(
     this.file,
