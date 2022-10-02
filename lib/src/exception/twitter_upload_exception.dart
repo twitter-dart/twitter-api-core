@@ -41,7 +41,9 @@ class TwitterUploadException implements Exception {
         ..writeln('  ✅ Request:')
         ..writeln('   ${response!.request}\n')
         ..writeln('  ✅ Headers:')
-        ..writeln('   ${response!.headers}\n');
+        ..writeln('   ${response!.headers}\n')
+        ..writeln('  ✅ Body:')
+        ..writeln('   ${response!.body}\n');
     }
 
     buffer.writeln('  Please create an Issue if you have a question '

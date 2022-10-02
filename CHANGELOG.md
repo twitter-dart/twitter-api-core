@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.3.4
+
+- Fixed `TwitterUploadException`.
+
 ## v1.3.3
 
 - Fixed `TwitterUploadException`.
