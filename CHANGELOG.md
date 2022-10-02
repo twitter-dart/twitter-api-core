@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.3.2
+
+- Added `TwitterUploadException`.
+
 ## v1.3.1
 
 - Added a serialization pattern.
