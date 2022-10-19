@@ -104,47 +104,6 @@ import '../client/retry_strategy.dart';
 /// is passed to the [maxAttempts] field of [RetryConfig].
 class RetryConfig {
   /// Returns the new instance of [RetryConfig] of regular intervals.
-  @Deprecated('Use .OfRegularIntervals instead.')
-  factory RetryConfig.regularIntervals({
-    required int maxAttempts,
-    int intervalInSeconds = 2,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig._(
-        strategy: RetryStrategy.regularIntervals,
-        maxAttempts: maxAttempts,
-        intervalInSeconds: intervalInSeconds,
-        onExecute: onExecute,
-      );
-
-  /// Returns the new instance of [RetryConfig] of Exponential Back Off.
-  @Deprecated('Use .OfExponentialBackOff instead.')
-  factory RetryConfig.exponentialBackOff({
-    required int maxAttempts,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig._(
-        strategy: RetryStrategy.exponentialBackOff,
-        maxAttempts: maxAttempts,
-        intervalInSeconds: 0,
-        onExecute: onExecute,
-      );
-
-  /// Returns the new instance of [RetryConfig] of Exponential Back Off
-  /// and Jitter.
-  @Deprecated('Use .OfExponentialBackOffAndJitter instead.')
-  factory RetryConfig.exponentialBackOffAndJitter({
-    required int maxAttempts,
-    Function(RetryEvent event)? onExecute,
-  }) =>
-      RetryConfig._(
-        strategy: RetryStrategy.exponentialBackOffAndJitter,
-        maxAttempts: maxAttempts,
-        intervalInSeconds: 0,
-        onExecute: onExecute,
-      );
-
-  /// Returns the new instance of [RetryConfig] of regular intervals.
   factory RetryConfig.ofRegularIntervals({
     required int maxAttempts,
     int intervalInSeconds = 2,

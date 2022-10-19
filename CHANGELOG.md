@@ -1,5 +1,12 @@
 # Release Note
 
+## v1.4.0
+
+- Removed deprecated methods in `RetryConfig`.
+  - `regularIntervals`
+  - `exponentialBackOff`
+  - `exponentialBackOffAndJitter`
+
 ## v1.3.4
 
 - Fixed `TwitterUploadException`.
