@@ -1,5 +1,10 @@
 # Release Note
 
+## v1.4.1
+
+- Added `BCP47Language` object.
+- Added `ISOAlpha2Country` object.
+
 ## v1.4.0
 
 - Removed deprecated methods in `RetryConfig`.

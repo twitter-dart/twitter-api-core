@@ -12,6 +12,8 @@ export 'package:twitter_api_core/src/exception/rate_limit_exceeded_exception.dar
 export 'package:twitter_api_core/src/exception/twitter_exception.dart';
 export 'package:twitter_api_core/src/exception/twitter_upload_exception.dart';
 export 'package:twitter_api_core/src/exception/unauthorized_exception.dart';
+export 'package:twitter_api_core/src/service/bcp47_language.dart';
+export 'package:twitter_api_core/src/service/iso_alpha2_country.dart';
 export 'package:twitter_api_core/src/service/serializable.dart';
 export 'package:twitter_api_core/src/service/service_helper.dart'
     show ServiceHelper;
