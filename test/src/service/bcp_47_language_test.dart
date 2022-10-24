@@ -3,7 +3,7 @@
 // modification, are permitted provided the conditions.
 
 import 'package:test/test.dart';
-import 'package:twitter_api_core/src/service/bcp_47_language.dart';
+import 'package:twitter_api_core/src/service/bcp47_language.dart';
 
 void main() {
   test('.name', () {
