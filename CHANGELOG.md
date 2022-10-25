@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.4.3
+
+- Fixed `RateLimitExceededException`.
+
 ## v1.4.2
 
 - `RateLimitExceededException` extended `TwitterException`.
