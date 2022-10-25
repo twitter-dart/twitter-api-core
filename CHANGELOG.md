@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.4.2
+
+- `RateLimitExceededException` extended `TwitterException`.
+- Exposed core packages.
+- Added `JsonValue` annotation for `ISOAlpha2Country` enum.
+
 ## v1.4.1
 
 - Added `BCP47Language` object.

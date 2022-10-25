@@ -2,6 +2,8 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:http/http.dart' show Response, StreamedResponse, MultipartFile;
 export 'package:mime/mime.dart' show lookupMimeType;
 export 'package:twitter_api_core/src/client/client_context.dart';
 export 'package:twitter_api_core/src/client/oauth_tokens.dart';
