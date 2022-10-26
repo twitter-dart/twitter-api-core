@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.5.0
+
+- Improved dependency structures.
+
 ## v1.4.4
 
 - Added and exposed `json_annotation` package.
