@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.4.4
+
+- Added and exposed `json_annotation` package.
+
 ## v1.4.3
 
 - Fixed `RateLimitExceededException`.
