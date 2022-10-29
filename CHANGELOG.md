@@ -1,5 +1,11 @@
 # Release Note
 
+## v1.5.1
+
+- Added enums below.
+  - `WithheldCountry`
+  - `TweetLanguage`
+
 ## v1.5.0
 
 - Improved dependency structures.
