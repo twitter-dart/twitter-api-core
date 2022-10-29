@@ -18,5 +18,7 @@ export 'package:twitter_api_core/src/service/iso_alpha2_country.dart';
 export 'package:twitter_api_core/src/service/serializable.dart';
 export 'package:twitter_api_core/src/service/service_helper.dart'
     show ServiceHelper;
+export 'package:twitter_api_core/src/service/tweet_language.dart';
+export 'package:twitter_api_core/src/service/withheld_country.dart';
 export 'package:twitter_api_core/src/util/json_utils.dart';
 export 'package:twitter_api_core/src/util/oauth_utils.dart';
