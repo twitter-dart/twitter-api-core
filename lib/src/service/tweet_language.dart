@@ -220,7 +220,7 @@ enum TweetLanguage {
   lithuanian('lt'),
 
   @JsonValue('und')
-  undetermined('und');
+  undefined('und');
 
   /// The language code
   final String code;

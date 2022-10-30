@@ -4,7 +4,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum WithheldCountry {
+enum Country {
   /// `AF`
   @JsonValue('AF')
   afghanistan('AF'),
@@ -1008,5 +1008,5 @@ enum WithheldCountry {
   /// The code
   final String code;
 
-  const WithheldCountry(this.code);
+  const Country(this.code);
 }

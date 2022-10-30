@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.6.0
+
+- Renamed enum from `WithheldCountry` to `Country`.
+
 ## v1.5.1
 
 - Added enums below.

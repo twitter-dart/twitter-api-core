@@ -79,7 +79,7 @@ void main() {
     expect(TweetLanguage.welsh.name, 'welsh');
     expect(TweetLanguage.georgian.name, 'georgian');
     expect(TweetLanguage.lithuanian.name, 'lithuanian');
-    expect(TweetLanguage.undetermined.name, 'undetermined');
+    expect(TweetLanguage.undefined.name, 'undefined');
   });
 
   test('.code', () {
@@ -154,6 +154,6 @@ void main() {
     expect(TweetLanguage.welsh.code, 'cy');
     expect(TweetLanguage.georgian.code, 'ka');
     expect(TweetLanguage.lithuanian.code, 'lt');
-    expect(TweetLanguage.undetermined.code, 'und');
+    expect(TweetLanguage.undefined.code, 'und');
   });
 }
