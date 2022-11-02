@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.2
+
+- Exposed `http.BaseResponse`.
+
 ## v1.7.1
 
 - Added `DataNotFoundException`.
