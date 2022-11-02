@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.0
+
+- Renamed from `TweetLanguage` to `Language`.
+
 ## v1.6.1
 
 - Added convenient utilities in `TweetLanguage` and `Country` enumerations.

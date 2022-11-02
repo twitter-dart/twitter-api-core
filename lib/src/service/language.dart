@@ -5,7 +5,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TweetLanguage {
+enum Language {
   @JsonValue('am')
   amharic('am'),
 
@@ -225,10 +225,10 @@ enum TweetLanguage {
   /// The language code
   final String code;
 
-  const TweetLanguage(this.code);
+  const Language(this.code);
 
-  /// Returns the [TweetLanguage] associated with [code].
-  static TweetLanguage valueOf(final String code) {
+  /// Returns the [Language] associated with [code].
+  static Language valueOf(final String code) {
     final $code = code.toLowerCase();
 
     for (final language in values) {
@@ -242,13 +242,13 @@ enum TweetLanguage {
     );
   }
 
-  /// Returns a list of country enumerations excluding [TweetLanguage.undefined]
+  /// Returns a list of country enumerations excluding [Language.undefined]
   /// which are supported by Twitter.
   ///
   /// The list returned from this method will conform to
   /// the BCP47 standard.
-  static List<TweetLanguage> get standardizedValues =>
-      values.where((element) => element != TweetLanguage.undefined).toList();
+  static List<Language> get standardizedValues =>
+      values.where((element) => element != Language.undefined).toList();
 
   /// Returns [name] with the first letter of the element [name] capitalized.
   String get properName =>
