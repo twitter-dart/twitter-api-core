@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.1
+
+- Added `DataNotFoundException`.
+
 ## v1.7.0
 
 - Renamed from `TweetLanguage` to `Language`.
