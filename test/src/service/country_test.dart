@@ -518,4 +518,41 @@ void main() {
     expect(Country.allCountries.code, 'XX');
     expect(Country.dmcaRequest.code, 'XY');
   });
+
+  group('.valueOf', () {
+    test('with lower case', () {
+      final actual = Country.valueOf('jp');
+
+      expect(actual, Country.japan);
+    });
+
+    test('with upper case', () {
+      final actual = Country.valueOf('JP');
+
+      expect(actual, Country.japan);
+    });
+
+    test('with unsupported code', () {
+      expect(
+        () => Country.valueOf('test'),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) => e.message == 'The code [test] is not supported.',
+            ),
+          ),
+        ),
+      );
+    });
+  });
+
+  test('.standardizedValues', () {
+    final actual = Country.standardizedValues;
+
+    expect(actual.length != Country.values.length, isTrue);
+    expect(actual.length == Country.values.length - 2, isTrue);
+    expect(actual.contains(Country.allCountries), isFalse);
+    expect(actual.contains(Country.dmcaRequest), isFalse);
+  });
 }

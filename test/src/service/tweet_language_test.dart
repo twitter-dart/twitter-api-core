@@ -156,4 +156,44 @@ void main() {
     expect(TweetLanguage.lithuanian.code, 'lt');
     expect(TweetLanguage.undefined.code, 'und');
   });
+
+  group('.valueOf', () {
+    test('with lower case', () {
+      final actual = TweetLanguage.valueOf('fr');
+
+      expect(actual, TweetLanguage.french);
+    });
+
+    test('with upper case', () {
+      final actual = TweetLanguage.valueOf('FR');
+
+      expect(actual, TweetLanguage.french);
+    });
+
+    test('with unsupported code', () {
+      expect(
+        () => TweetLanguage.valueOf('test'),
+        throwsA(
+          allOf(
+            isA<UnsupportedError>(),
+            predicate(
+              (dynamic e) => e.message == 'The code [test] is not supported.',
+            ),
+          ),
+        ),
+      );
+    });
+  });
+
+  test('.properName', () {
+    expect(TweetLanguage.amharic.properName, 'Amharic');
+  });
+
+  test('.standardizedValues', () {
+    final actual = TweetLanguage.standardizedValues;
+
+    expect(actual.length != TweetLanguage.values.length, isTrue);
+    expect(actual.length == TweetLanguage.values.length - 1, isTrue);
+    expect(actual.contains(TweetLanguage.undefined), isFalse);
+  });
 }

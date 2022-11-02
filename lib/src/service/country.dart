@@ -1009,4 +1009,29 @@ enum Country {
   final String code;
 
   const Country(this.code);
+
+  /// Returns the [Country] associated with [code].
+  static Country valueOf(final String code) {
+    final $code = code.toUpperCase();
+
+    for (final country in values) {
+      if (country.code == $code) {
+        return country;
+      }
+    }
+
+    throw UnsupportedError(
+      'The code [$code] is not supported.',
+    );
+  }
+
+  /// Returns a list of country enumerations excluding [Country.allCountries]
+  /// and [Country.dmcaRequest], which are supported by Twitter.
+  ///
+  /// The list returned from this method will conform to
+  /// the ISO Alpha2 standard.
+  static List<Country> get standardizedValues => values
+      .where((element) =>
+          element != Country.allCountries && element != Country.dmcaRequest)
+      .toList();
 }

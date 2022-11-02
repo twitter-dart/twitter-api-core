@@ -226,4 +226,31 @@ enum TweetLanguage {
   final String code;
 
   const TweetLanguage(this.code);
+
+  /// Returns the [TweetLanguage] associated with [code].
+  static TweetLanguage valueOf(final String code) {
+    final $code = code.toLowerCase();
+
+    for (final language in values) {
+      if (language.code == $code) {
+        return language;
+      }
+    }
+
+    throw UnsupportedError(
+      'The code [$code] is not supported.',
+    );
+  }
+
+  /// Returns a list of country enumerations excluding [TweetLanguage.undefined]
+  /// which are supported by Twitter.
+  ///
+  /// The list returned from this method will conform to
+  /// the BCP47 standard.
+  static List<TweetLanguage> get standardizedValues =>
+      values.where((element) => element != TweetLanguage.undefined).toList();
+
+  /// Returns [name] with the first letter of the element [name] capitalized.
+  String get properName =>
+      name.substring(0, 1).toUpperCase() + name.substring(1);
 }

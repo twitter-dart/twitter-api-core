@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.6.1
+
+- Added convenient utilities in `TweetLanguage` and `Country` enumerations.
+
 ## v1.6.0
 
 - Renamed enum from `WithheldCountry` to `Country`.
