@@ -9,9 +9,35 @@ import '../../twitter_api_core.dart';
 /// authorized by the server as a result of its use in the request.
 class UnauthorizedException extends TwitterException {
   /// Returns the new instance of [UnauthorizedException].
-  UnauthorizedException(final String message)
-      : super(message, Response('', 401));
+  UnauthorizedException(
+    final String message, [
+    final Response? response,
+  ]) : super(message, response ?? Response('', 401));
 
   @override
-  String toString() => 'UnauthorizedException: $message';
+  String toString() {
+    final buffer = StringBuffer()
+      ..writeln('TwitterUploadException: $message\n');
+
+    if (response.request != null) {
+      buffer
+        ..writeln('  ✅ Status Code:')
+        ..writeln('   ${response.statusCode}\n')
+        ..writeln('  ✅ Request:')
+        ..writeln('   ${response.request}\n')
+        ..writeln('  ✅ Headers:')
+        ..writeln('   ${response.headers}\n');
+
+      if (body != null) {
+        buffer
+          ..writeln('  ✅ Body:')
+          ..writeln('   $body\n');
+      }
+    }
+
+    buffer.writeln('  Please create an Issue if you have a question '
+        'or suggestion for this exception.');
+
+    return buffer.toString();
+  }
 }
