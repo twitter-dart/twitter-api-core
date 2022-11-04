@@ -8,24 +8,21 @@ import 'dart:io';
 // Package imports:
 import 'package:http/http.dart';
 
+// Project imports:
+import 'twitter_exception.dart';
+
 /// This class indicates that an exception occurred during a file upload to
 /// Twitter.
-class TwitterUploadException implements Exception {
+class TwitterUploadException extends TwitterException {
   /// Returns the new instance of [TwitterUploadException].
-  const TwitterUploadException(
+  TwitterUploadException(
     this.file,
-    this.message, [
-    this.response,
-  ]);
+    final String message, [
+    final Response? response,
+  ]) : super(message, response ?? Response('', 400));
 
   /// The file in which the exception occurred.
   final File file;
-
-  /// The response
-  final Response? response;
-
-  /// The error message
-  final String message;
 
   @override
   String toString() {
@@ -34,16 +31,20 @@ class TwitterUploadException implements Exception {
       ..writeln('  ✅ File Path:')
       ..writeln('   ${file.path}\n');
 
-    if (response != null) {
+    if (response.request != null) {
       buffer
         ..writeln('  ✅ Status Code:')
-        ..writeln('   ${response!.statusCode}\n')
+        ..writeln('   ${response.statusCode}\n')
         ..writeln('  ✅ Request:')
-        ..writeln('   ${response!.request}\n')
+        ..writeln('   ${response.request}\n')
         ..writeln('  ✅ Headers:')
-        ..writeln('   ${response!.headers}\n')
-        ..writeln('  ✅ Body:')
-        ..writeln('   ${response!.body}\n');
+        ..writeln('   ${response.headers}\n');
+
+      if (body != null) {
+        buffer
+          ..writeln('  ✅ Body:')
+          ..writeln('   $body\n');
+      }
     }
 
     buffer.writeln('  Please create an Issue if you have a question '

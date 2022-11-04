@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.3
+
+- `TwitterUploadedException` extended `TwitterException`.
+
 ## v1.7.2
 
 - Exposed `http.BaseResponse`.
