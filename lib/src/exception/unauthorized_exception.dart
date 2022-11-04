@@ -2,14 +2,15 @@
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided the conditions.
 
+// Project imports:
+import '../../twitter_api_core.dart';
+
 /// This exception is thrown to indicate that the specified access token was not
 /// authorized by the server as a result of its use in the request.
-class UnauthorizedException implements Exception {
+class UnauthorizedException extends TwitterException {
   /// Returns the new instance of [UnauthorizedException].
-  const UnauthorizedException(this.message);
-
-  /// The error message
-  final String message;
+  UnauthorizedException(final String message)
+      : super(message, Response('', 401));
 
   @override
   String toString() => 'UnauthorizedException: $message';

@@ -27,19 +27,22 @@ class TwitterException implements Exception {
 
   @override
   String toString() {
-    final buffer = StringBuffer()
-      ..writeln('TwitterException: $message\n')
-      ..writeln('  ✅ Status Code:')
-      ..writeln('   ${response.statusCode}\n')
-      ..writeln('  ✅ Request:')
-      ..writeln('   ${response.request}\n')
-      ..writeln('  ✅ Headers:')
-      ..writeln('   ${response.headers}\n');
+    final buffer = StringBuffer()..writeln('TwitterException: $message\n');
 
-    if (body != null) {
+    if (response.request != null) {
       buffer
-        ..writeln('  ✅ Body:')
-        ..writeln('   $body\n');
+        ..writeln('  ✅ Status Code:')
+        ..writeln('   ${response.statusCode}\n')
+        ..writeln('  ✅ Request:')
+        ..writeln('   ${response.request}\n')
+        ..writeln('  ✅ Headers:')
+        ..writeln('   ${response.headers}\n');
+
+      if (body != null) {
+        buffer
+          ..writeln('  ✅ Body:')
+          ..writeln('   $body\n');
+      }
     }
 
     buffer.writeln('  Please create an Issue if you have a question '
