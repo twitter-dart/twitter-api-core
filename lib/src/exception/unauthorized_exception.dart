@@ -11,7 +11,7 @@ class UnauthorizedException extends TwitterException {
   /// Returns the new instance of [UnauthorizedException].
   UnauthorizedException(
     final String message, [
-    final Response? response,
+    final BaseResponse? response,
   ]) : super(message, response ?? Response('', 401));
 
   @override

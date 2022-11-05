@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.6
+
+- Improved `UnauthorizedException`.
+
 ## v1.7.5
 
 - Improved `UnauthorizedException`.
