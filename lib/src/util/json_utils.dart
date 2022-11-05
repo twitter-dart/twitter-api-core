@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 // Project imports:
-import '../exception/twitter_exception.dart';
+import '../exception/data_not_found_exception.dart';
 
 dynamic tryJsonDecode(
   final BaseResponse response,
@@ -18,8 +18,8 @@ dynamic tryJsonDecode(
   try {
     return jsonDecode(body);
   } on FormatException {
-    throw TwitterException(
-      'Failed to decode the response body as JSON.',
+    throw DataNotFoundException(
+      'No body exists in response.',
       response,
     );
   }

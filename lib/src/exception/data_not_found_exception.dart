@@ -22,6 +22,12 @@ class DataNotFoundException extends TwitterException {
       ..writeln('  ✅ Headers:')
       ..writeln('   ${response.headers}\n');
 
+    if (body != null) {
+      buffer
+        ..writeln('  ✅ Body:')
+        ..writeln('   $body\n');
+    }
+
     buffer.writeln('  Please create an Issue if you have a question '
         'or suggestion for this exception.');
 
