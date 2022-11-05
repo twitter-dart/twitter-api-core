@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.7.8
+
+- Improved `DataNotFoundException`.
+
 ## v1.7.7
 
 - Improved `DataNotFoundException`.

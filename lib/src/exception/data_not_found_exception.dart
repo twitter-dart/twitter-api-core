@@ -9,7 +9,7 @@ import 'twitter_exception.dart';
 /// a particular condition does not exist on Twitter's server.
 class DataNotFoundException extends TwitterException {
   /// Returns the new instance of [DataNotFoundException].
-  DataNotFoundException(super.message, super.response);
+  DataNotFoundException(super.message, super.response, [super.body]);
 
   @override
   String toString() {
