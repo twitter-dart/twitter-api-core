@@ -2,7 +2,10 @@
 
 ## v1.8.0
 
-
+- Fixed report name in `UnauthorizedException`.
+- The following conditions have been added as possible retry conditions.
+  - When status code is `500` or `503`.
+  - When `SocketException` is thrown.
 
 ## v1.7.8
 

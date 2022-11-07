@@ -7,6 +7,7 @@ import 'dart:async';
 
 // Package imports:
 import 'package:http/http.dart' as http;
+import 'package:universal_io/io.dart';
 
 // Project imports:
 import '../config/retry_config.dart';
@@ -188,19 +189,41 @@ class _ClientContext implements ClientContext {
     int retryCount = 0,
   }) async {
     try {
-      return await challenge.call(client);
+      final response = await challenge.call(client);
+
+      if (response.statusCode == 500 || response.statusCode == 503) {
+        if (_retryPolicy.shouldRetry(retryCount)) {
+          return await _retry(client, challenge, retryCount: ++retryCount);
+        }
+      }
+
+      return response;
+    } on SocketException {
+      if (_retryPolicy.shouldRetry(retryCount)) {
+        return await _retry(client, challenge, retryCount: ++retryCount);
+      }
+
+      rethrow;
     } on TimeoutException {
       if (_retryPolicy.shouldRetry(retryCount)) {
-        await _retryPolicy.wait(retryCount);
-
-        return await _challengeWithRetryIfNecessary(
-          client,
-          challenge,
-          retryCount: ++retryCount,
-        );
+        return await _retry(client, challenge, retryCount: ++retryCount);
       }
 
       rethrow;
     }
+  }
+
+  dynamic _retry(
+    final Client client,
+    final dynamic Function(Client client) challenge, {
+    int retryCount = 0,
+  }) async {
+    await _retryPolicy.wait(retryCount);
+
+    return await _challengeWithRetryIfNecessary(
+      client,
+      challenge,
+      retryCount: ++retryCount,
+    );
   }
 }
