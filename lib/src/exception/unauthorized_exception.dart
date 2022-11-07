@@ -16,8 +16,7 @@ class UnauthorizedException extends TwitterException {
 
   @override
   String toString() {
-    final buffer = StringBuffer()
-      ..writeln('TwitterUploadException: $message\n');
+    final buffer = StringBuffer()..writeln('UnauthorizedException: $message\n');
 
     if (response.request != null) {
       buffer
