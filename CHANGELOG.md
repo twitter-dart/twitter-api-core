@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.8.1
+
+- Fixed internal process for `Direct Messages` service.
+
 ## v1.8.0
 
 - Fixed report name in `UnauthorizedException`.

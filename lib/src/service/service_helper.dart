@@ -201,19 +201,32 @@ class ServiceHelper implements Service {
   }
 
   dynamic _removeNullValues(final dynamic object) {
-    if (object is! Map) {
-      return object;
+    if (object is Map) {
+      final parameters = <String, dynamic>{};
+      object.forEach((key, value) {
+        final newObject = _removeNullValues(value);
+
+        if (newObject != null) {
+          parameters[key] = newObject;
+        }
+      });
+
+      return parameters.isNotEmpty ? parameters : null;
+    } else if (object is List) {
+      final parameters = <dynamic>[];
+      for (final value in object) {
+        final newObject = _removeNullValues(value);
+
+        if (newObject != null) {
+          parameters.add(newObject);
+        }
+      }
+
+      return parameters.isNotEmpty ? parameters : null;
     }
 
-    final parameters = <String, dynamic>{};
-    object.forEach((key, value) {
-      final newObject = _removeNullValues(value);
-      if (newObject != null) {
-        parameters[key] = newObject;
-      }
-    });
-
-    return parameters.isNotEmpty ? parameters : null;
+    //! Just return it as is if it's neither Map nor List.
+    return object;
   }
 
   Map<String, String> _convertQueryParameters(
