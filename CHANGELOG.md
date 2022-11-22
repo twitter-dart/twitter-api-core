@@ -1,5 +1,9 @@
 # Release Note
 
+## v1.8.2
+
+- Fixed bug that retry count does not increment correctly.
+
 ## v1.8.1
 
 - Fixed internal process for `Direct Messages` service.
