@@ -86,7 +86,7 @@ void main() {
     expect(Language.cashtagsOnly.name, 'cashtagsOnly');
     expect(Language.hashtagsOnly.name, 'hashtagsOnly');
     expect(Language.mediaLinks.name, 'mediaLinks');
-    expect(Language.fewContent.name, 'fewContent');
+    expect(Language.shortText.name, 'shortText');
     expect(Language.mediaOrCardOnly.name, 'mediaOrCardOnly');
   });
 
@@ -167,7 +167,7 @@ void main() {
     expect(Language.cashtagsOnly.code, 'qct');
     expect(Language.hashtagsOnly.code, 'qht');
     expect(Language.mediaLinks.code, 'qme');
-    expect(Language.fewContent.code, 'qst');
+    expect(Language.shortText.code, 'qst');
     expect(Language.mediaOrCardOnly.code, 'zxx');
   });
 

@@ -240,7 +240,7 @@ enum Language {
 
   /// For tweets with a very short text (works for tweets since 2022-06-14).
   @JsonValue('qst')
-  fewContent('qst'),
+  shortText('qst'),
 
   /// For tweets with either media or Twitter Card only, without any additional
   /// text (works for tweets since 2022-06-14)
