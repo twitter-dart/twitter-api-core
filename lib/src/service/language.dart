@@ -220,7 +220,32 @@ enum Language {
   lithuanian('lt'),
 
   @JsonValue('und')
-  undefined('und');
+  undefined('und'),
+
+  /// For tweets with mentions only (works for tweets since 2022-06-14).
+  @JsonValue('qam')
+  mentionsOnly('qam'),
+
+  /// For tweets with cashtags only (works for tweets since 2022-06-14).
+  @JsonValue('qct')
+  cashtagsOnly('qct'),
+
+  /// For tweets with hashtags only (works for tweets since 2022-06-14).
+  @JsonValue('qht')
+  hashtagsOnly('qht'),
+
+  /// For tweets with media links (works for tweets since 2022-06-14).
+  @JsonValue('qme')
+  mediaLinks('qme'),
+
+  /// For tweets with a very short text (works for tweets since 2022-06-14).
+  @JsonValue('qst')
+  shortText('qst'),
+
+  /// For tweets with either media or Twitter Card only, without any additional
+  /// text (works for tweets since 2022-06-14)
+  @JsonValue('zxx')
+  mediaOrCardOnly('zxx');
 
   /// The language code
   final String code;

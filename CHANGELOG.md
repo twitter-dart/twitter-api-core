@@ -1,5 +1,15 @@
 # Release Note
 
+## v1.8.3
+
+- Supported language codes in `Language`.
+  - `qam` for tweets with mentions only (works for tweets since 2022-06-14)
+  - `qct` for tweets with cashtags only (works for tweets since 2022-06-14)
+  - `qht` for tweets with hashtags only (works for tweets since 2022-06-14)
+  - `qme` for tweets with media links (works for tweets since 2022-06-14)
+  - `qst` for tweets with a very short text (works for tweets since 2022-06-14)
+  - `zxx` for tweets with either media or Twitter Card only, without any additional text (works for tweets since 2022-06-14)
+
 ## v1.8.2
 
 - Fixed bug that retry count does not increment correctly.
