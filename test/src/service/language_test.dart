@@ -82,6 +82,12 @@ void main() {
     expect(Language.georgian.name, 'georgian');
     expect(Language.lithuanian.name, 'lithuanian');
     expect(Language.undefined.name, 'undefined');
+    expect(Language.mentionsOnly.name, 'mentionsOnly');
+    expect(Language.cashtagsOnly.name, 'cashtagsOnly');
+    expect(Language.hashtagsOnly.name, 'hashtagsOnly');
+    expect(Language.mediaLinks.name, 'mediaLinks');
+    expect(Language.fewContent.name, 'fewContent');
+    expect(Language.mediaOrCardOnly.name, 'mediaOrCardOnly');
   });
 
   test('.code', () {
@@ -157,6 +163,12 @@ void main() {
     expect(Language.georgian.code, 'ka');
     expect(Language.lithuanian.code, 'lt');
     expect(Language.undefined.code, 'und');
+    expect(Language.mentionsOnly.code, 'qam');
+    expect(Language.cashtagsOnly.code, 'qct');
+    expect(Language.hashtagsOnly.code, 'qht');
+    expect(Language.mediaLinks.code, 'qme');
+    expect(Language.fewContent.code, 'qst');
+    expect(Language.mediaOrCardOnly.code, 'zxx');
   });
 
   group('.valueOf', () {
